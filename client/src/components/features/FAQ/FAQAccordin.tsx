@@ -46,20 +46,20 @@ const FaqAccordion = () => {
   };
 
   return (
-    <div
-      className="
-        mx-auto
-        w-full max-w-[1168px]
-        min-h-screen
-        p-4
-        sm:p-6 md:p-8
-        bg-white
-        rounded-xl
-        shadow-lg
-        flex flex-col gap-8
-        overflow-y-auto
-      "
-    >
+   <div
+  className="
+    mx-auto
+    w-full max-w-[90%] lg:max-w-[1280px] xl:max-w-[1360px] 2xl:max-w-[1600px]
+    min-h-screen
+    p-4 sm:p-6 md:p-8 lg:p-12
+    bg-white
+    rounded-xl
+    shadow-lg
+    flex flex-col gap-8
+    overflow-y-auto
+  "
+>
+
       {faqs.map((faq, index) => {
         const isOpen = openIndices.includes(index);
 
