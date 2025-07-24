@@ -5,7 +5,6 @@ import ReduxProvider from "@/store/ReduxProvider";
 import Header from "@/components/features/shared/Header";
 
 const baumans = Baumans({ subsets: ["latin"], weight: "400", style: "normal" });
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Eventix",
@@ -19,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${baumans.className} ${inter.className}`}>
+      <body className={`${baumans.className}`}>
         <ReduxProvider>
           <Header/>
           {children}
