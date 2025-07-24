@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Baumans} from "next/font/google";
+import { Baumans, Inter } from "next/font/google";
 import "@/styles/globals.css";
+import ReduxProvider from "@/store/ReduxProvider";
+import Header from "@/components/features/shared/Header";
 
-const baumans = Baumans({ subsets: ["latin"] ,weight:"400",style:"normal"});
+const baumans = Baumans({ subsets: ["latin"], weight: "400", style: "normal" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Eventix",
@@ -11,12 +14,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={baumans.className}>{children}</body>
+      <body className={`${baumans.className} ${inter.className}`}>
+        <ReduxProvider>
+          <Header/>
+          {children}
+        </ReduxProvider>
+      </body>
     </html>
   );
 }
