@@ -27,11 +27,11 @@ const page = () => {
     <>
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white shadow-xl rounded-lg flex flex-col md:flex-row max-w-6xl w-full overflow-hidden">
-        <div className="md:w-1/2 bg-white p-6 md:p-10 flex items-center justify-center border-b md:border-b-0 md:border-r border-blue-400">
+        <div className="md:w-1/2 bg-white p-6 md:p-10 items-center justify-center border-b md:border-b-0 hidden md:flex">
           <img
             src="/assets/Screenshot 2025-07-24 154415.png"
             alt="Payment Illustration"
-            className="w-full max-w-md"
+            className="w-full max-w-md "
           />
         </div>
 

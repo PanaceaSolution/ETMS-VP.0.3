@@ -27,7 +27,7 @@ const page = () => {
     <>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-xl rounded-lg flex max-w-6xl w-full overflow-hidden">
-        <div className="w-1/2 bg-white p-10 flex items-center justify-center border-r border-blue-400">
+        <div className="w-1/2 bg-white p-10 hidden md:flex items-center justify-center ">
           <div className="max-w-md">
             <img
             src="/assets/Screenshot 2025-07-24 154415.png"
