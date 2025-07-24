@@ -3,7 +3,26 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 
 const page = () => {
+    const [data , setData] = useState({
+        fullName: '',
+        mobileNumber: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    })
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setData({
+            ...data,
+            [name]: value
+        });
+    }
     
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log('After submission data yaha aauxa hai:', data);
+    }   
   return (
     <>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
