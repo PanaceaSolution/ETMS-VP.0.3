@@ -36,11 +36,11 @@ function page() {
 
                         <h1>From screen to scene in seconds</h1>
 
-                        <div className='gap-6 flex  items-center text-center '>
+                        <div className='gap-2 flex  items-center text-center w-full justify-between'>
 
                             {
                                 buttons.map((button, index) => (
-                                    <button id='index' className='w-[112px] max-h-[42px] p-[10px] border rounded-lg border-black'>{button.name}</button>
+                                    <button id='index' className='min-w-[120px]  max-h-[42px] p-[10px] border rounded-lg border-black'>{button.name}</button>
                                 ))
                             }
                         </div>
