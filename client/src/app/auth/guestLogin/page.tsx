@@ -1,8 +1,16 @@
 'use client';
 import Link from 'next/link';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import {useRouter} from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { loginUser } from '@/store/features/UserSlice';
+import { IAuthData, Status } from '@/types/authData';
 
 const page = () => {
+  const router = useRouter();
+  const {status} = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
   const [data, setData] = useState({
     firstName: '',
     lastName: '',
@@ -64,8 +72,12 @@ const page = () => {
       console.log('Validation failed:', newErrors);
       return;
     }
-
-    console.log('Submitted data:', data);
+    // dispatch(loginUser(data)); 
+    
+    if(status === Status.SUCCESS) {
+      console.log('Login successful:', data);
+      router.push('/dashboard');
+    }
   };
 
   return (
@@ -73,7 +85,7 @@ const page = () => {
       <div className="bg-white shadow-xl rounded-lg flex flex-col md:flex-row max-w-6xl w-full overflow-hidden">
         <div className="md:w-1/2 bg-white p-6 md:p-10 items-center justify-center border-b md:border-b-0 hidden md:flex">
           <img
-            src="/assets/Screenshot 2025-07-24 154415.png"
+            src="/assets/authLogo.png"
             alt="Payment Illustration"
             className="w-full max-w-md"
           />
