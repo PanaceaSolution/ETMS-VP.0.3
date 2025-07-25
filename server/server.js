@@ -4,7 +4,7 @@ import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import sql from "./config/db.js";
 import userRoute from "./routes/UserRoute.js";
 import eventRoute from "./routes/EventRoute.js";
-import cors from "cors";
+import bookingRoute from "./routes/BookingRoute.js";
 
 const app = express();
 dotenv.config();
@@ -27,6 +27,7 @@ app.use(cors());
 
 app.use("/api/v3/user", userRoute);
 app.use("/api/v3/event", eventRoute);
+app.use("/api/v3/booking", bookingRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello, Server is running!");
