@@ -36,7 +36,6 @@ const page = () => {
                         />
                     </div>
                 </div>
-
                 <div className="md:w-1/2 bg-white p-6 md:p-10">
                     <h1 className="text-3xl font-bold text-center text-blue-600 font-sans">
                         THE <span className="text-[#4C9DF0]">EVENTIX</span>
