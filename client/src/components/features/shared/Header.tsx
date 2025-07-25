@@ -16,7 +16,7 @@ import NavLink from "@/components/ui/NavLink";
 
 const Links = [
   { name: "Home", path: "/" },
-  { name: "Events", path: "/" },
+  { name: "Events", path: "#events" },
   { name: "Tickets rate", path: "/" },
   { name: "Contact Us", path: "/" },
   { name: "About Us", path: "/" },

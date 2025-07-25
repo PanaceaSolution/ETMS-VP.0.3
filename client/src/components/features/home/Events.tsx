@@ -7,13 +7,13 @@ const EventsPage = () => {
   const [showUpcoming, setShowUpcoming] = useState(false);
 
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-4 py-6" id='events'>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-4xl font-bold">Events</h1>
+        <h1 className="text-2xl md:text-4xl font-bold">Events</h1>
         <div className="space-x-2">
           <button
             onClick={() => setShowUpcoming(false)}
-            className={`px-4 py-2 cursor-pointer font-medium rounded ${
+            className={`px-2 py-1 text-sm md:text-xl md:px-4 md:py-2 cursor-pointer font-medium rounded ${
               !showUpcoming
                 ? 'bg-blue-500 text-white'
                 : 'border border-blue-500 text-blue-500'
@@ -23,7 +23,7 @@ const EventsPage = () => {
           </button>
           <button
             onClick={() => setShowUpcoming(true)}
-            className={`px-4 py-2 cursor-pointer font-medium rounded ${
+            className={`px-2 py-1 text-sm md:text-xl md:px-4 md:py-2 cursor-pointer font-medium rounded ${
               showUpcoming
                 ? 'bg-blue-500 text-white'
                 : 'border border-blue-500 text-blue-500'
@@ -37,7 +37,7 @@ const EventsPage = () => {
       {showUpcoming ? (
         <UpcomingEvents events={upcomingEvents} />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {nowShowingEvents.map((ev) => (
             <EventCard key={ev.id} {...ev} />
           ))}
