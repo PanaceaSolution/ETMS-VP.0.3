@@ -6,6 +6,8 @@ import userRoute from "./routes/UserRoute.js";
 import eventRoute from "./routes/EventRoute.js";
 import bookingRoute from "./routes/BookingRoute.js";
 import cors from "cors";
+import helmet from "helmet";
+import xss from "xss-clean";
 
 const app = express();
 dotenv.config();
@@ -14,6 +16,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(helmet());
+app.use(xss());
 
 // app.get("/db", async (req, res) => {
 //   try {
