@@ -1,4 +1,3 @@
-import { Status } from "./authData";
 
 export interface IBookingData {
     eventId: string;
@@ -9,4 +8,3 @@ export interface IBookingData {
     price : number
     totalPrice: number;
 }
-
