@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Image from "next/image";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,12 +16,13 @@ import NavLink from "@/components/ui/NavLink";
 
 const Links = [
   { name: "Home", path: "/" },
-  { name: "Events", path: "/" },
+  { name: "Events", path: "#events" },
   { name: "Tickets rate", path: "/" },
   { name: "Contact Us", path: "/" },
   { name: "About Us", path: "/" },
-  { name: "FaQ", path: "/" },
+  { name: "FaQ", path: "/FAQ" },
 ];
+
 const linkContainerVariants = {
   hidden: {},
   visible: {
@@ -34,21 +37,36 @@ const linkItemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
+const hiddenPaths = ["/auth/login", "/auth/signUp", "/auth/guestLogin"];
+
 const Header = () => {
+  const router = useRouter();
+  const pathName = usePathname();
+
+  const shouldDisplay = !hiddenPaths.includes(pathName);
+  const handleLoginClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    router.push("/auth/login");
+  };
+
+  if (!shouldDisplay) return null;
   return (
-    <nav
-      className="h-[8svh] md:h-[10dvh] w-full flex items-center justify-around bg-gray-100 shadow-sm z-50"
-    >
+    <nav className={`h-[8svh] md:h-[10dvh] w-full flex items-center justify-around bg-gray-100 shadow-sm z-50 ${shouldDisplay ? "" : "hidden"}`}>
       {/* Logo */}
-      <motion.img
-        src="/assets/logo.png"
-        alt="Logo"
-        className="h-[17px] w-[120px] md:h-[22px] md:w-[189px]"
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-      />
-
+        onClick={() => router.push("/")}
+      >
+        <Image
+          src="/assets/logo.png"
+          alt="Logo"
+          height={22}
+          width={189}
+          className="h-[17px] w-[120px] md:h-[22px] md:w-[189px] cursor-pointer"
+        />
+      </motion.div>
       {/* Hamburger Dropdown (Mobile) */}
       <motion.div
         className="hamburger sm:hidden"
@@ -66,7 +84,7 @@ const Header = () => {
                 <Link href={item.path}>{item.name}</Link>
               </DropdownMenuItem>
             ))}
-            <DropdownMenuItem>Login</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLoginClick}>Login</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </motion.div>
@@ -91,10 +109,11 @@ const Header = () => {
 
       {/* Desktop Login Button */}
       <motion.button
-        className="btn-color-primary text-white px-4 py-2 rounded-sm xl:text-xl hover:cursor-pointer opacity-90 hover:opacity-100 hidden md:block"
+        className="bg-blue-600 text-white px-4 py-2 rounded-sm xl:text-xl hover:cursor-pointer opacity-90 hover:opacity-100 hidden md:block"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5 }}
+        onClick={handleLoginClick}
       >
         Login
       </motion.button>
