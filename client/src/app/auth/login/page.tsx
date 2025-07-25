@@ -91,20 +91,25 @@ function page() {
 
 
                             <input {...register("userName")} placeholder='Username' className='w-full rounded-[10px] border-[#22B7D8] border-[1px] text-black max-w-[374px] h-[50px] px-2' />
-                            <div className="relative w-full max-w-[374px]">
+                            <fieldset className="relative border border-[#22B7D8] h-[60px] rounded-[10px] focus-within:border-blue-400 transition-colors">
+                                <legend className="text-sm text-[#22B7D8] px-2 ml-2">Password</legend>
+
                                 <input
                                     {...register("password")}
-                                    placeholder="Password"
                                     type={showPassword ? "text" : "password"}
-                                    className="w-full rounded-[10px] border-[#22B7D8] border-[1px] text-black h-[50px] px-2 pr-10"
+                                    placeholder="Password"
+                                    className="w-full h-[50px] px-2  pb-2 pr-10 text-black outline-none bg-transparent border-none"
                                 />
+
                                 <div
                                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
                                     {showPassword ? <IoEyeOutline size={20} /> : <IoEyeOffOutline size={20} />}
                                 </div>
-                            </div>
+                            </fieldset>
+
+
 
 
 
