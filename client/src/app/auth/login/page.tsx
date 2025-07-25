@@ -14,7 +14,7 @@ function page() {
 
     const buttons = [
         { name: "Guest Login", path: "auth/guestlogin" },
-        { name: "Sign Up", path: "auth/signup" },
+        { name: "Sign Up", path: "/auth/signUp" },
         { name: "Log in", path: "login" },
     ]
 
