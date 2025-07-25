@@ -54,37 +54,62 @@ export const addEvent = async (req, res) => {
 };
 
 export const getAllEvent = async (req, res) => {
-  const allEvent = await prisma.event.findMany();
-  if (allEvent.length == 0) {
-    return res.status(404).json({
-      message: "No event found",
+  try {
+    const allEvent = await prisma.event.findMany();
+    if (allEvent.length == 0) {
+      return res.status(404).json({
+        message: "No event found",
+      });
+    }
+    res.status(200).json({
+      message: "Event fetched successfully",
+      data: allEvent,
+    });
+  } catch (error) {
+    console.log("Error", error);
+    return res.status(500).json({
+      message: "Server Error",
     });
   }
-  res.status(200).json({
-    message: "Event fetched successfully",
-    data: allEvent,
-  });
 };
 
 export const getSingleEvent = async (req, res) => {
   const { id } = req.params;
+
   if (!id) {
     return res.status(400).json({
-      message: "please provide id",
+      message: "Please provide an ID",
     });
   }
-  const foundEvent = await prisma.event.findMany({
-    where: {
-      id,
-    },
-  });
-  if (foundEvent.length === 0) {
-    return res.status(404).json({
-      message: "No event found with that Id",
+
+  const eventId = parseInt(id);
+  if (isNaN(eventId)) {
+    return res.status(400).json({
+      message: "ID must be a valid number",
     });
   }
-  res.status(200).json({
-    message: "Event fetched successfully",
-    data: foundEvent,
-  });
+
+  try {
+    const foundEvent = await prisma.event.findUnique({
+      where: {
+        id: eventId,
+      },
+    });
+
+    if (!foundEvent) {
+      return res.status(404).json({
+        message: "No event found with that ID",
+      });
+    }
+
+    res.status(200).json({
+      message: "Event fetched successfully",
+      data: foundEvent,
+    });
+  } catch (error) {
+    console.error("Error fetching event:", error);
+    res.status(500).json({
+      message: "Server error while fetching event",
+    });
+  }
 };

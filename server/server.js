@@ -4,6 +4,7 @@ import globalErrorHandler from "./middlewares/globalErrorHandler.js";
 import sql from "./config/db.js";
 import userRoute from "./routes/UserRoute.js";
 import eventRoute from "./routes/EventRoute.js";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 // app.get("/db", async (req, res) => {
 //   try {
