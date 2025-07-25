@@ -47,7 +47,6 @@ const page = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       console.log('Submitted Data:', data);
-      // You can perform API call here
     }
   };
 
