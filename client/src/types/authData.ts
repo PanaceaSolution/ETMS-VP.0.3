@@ -13,6 +13,6 @@ export enum Status {
 }
 
 export interface IAuthInitialState {
-    authData: IAuthData;        
+    users: IAuthData[];        
     status: Status;
 }

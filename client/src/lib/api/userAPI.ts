@@ -12,7 +12,8 @@ const AuthApi = axios.create({
     baseURL : "http://localhost:3000/api/v3",
     headers : {
         "Content-Type" : "application/json",
-        "Accept" : "application/json"
+        "Accept" : "application/json",
+        "Authorization" : localStorage.getItem("token")
     }
 })
 
