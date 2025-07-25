@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Image from "next/image";
 import {
@@ -22,6 +22,7 @@ const Links = [
   { name: "About Us", path: "/" },
   { name: "FaQ", path: "/FAQ" },
 ];
+
 const linkContainerVariants = {
   hidden: {},
   visible: {
@@ -36,14 +37,21 @@ const linkItemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
+const hiddenPaths = ["/auth/login", "/auth/signUp", "/auth/guestLogin"];
+
 const Header = () => {
   const router = useRouter();
+  const pathName = usePathname();
+
+  const shouldDisplay = !hiddenPaths.includes(pathName);
   const handleLoginClick = (e: React.MouseEvent) => {
     e.preventDefault();
     router.push("/auth/login");
   };
+
+  if (!shouldDisplay) return null;
   return (
-    <nav className="h-[8svh] md:h-[10dvh] w-full flex items-center justify-around bg-gray-100 shadow-sm z-50">
+    <nav className={`h-[8svh] md:h-[10dvh] w-full flex items-center justify-around bg-gray-100 shadow-sm z-50 ${shouldDisplay ? "" : "hidden"}`}>
       {/* Logo */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -76,7 +84,7 @@ const Header = () => {
                 <Link href={item.path}>{item.name}</Link>
               </DropdownMenuItem>
             ))}
-            <DropdownMenuItem>Login</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLoginClick}>Login</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </motion.div>
