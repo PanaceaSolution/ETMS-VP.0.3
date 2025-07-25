@@ -62,7 +62,7 @@ function page() {
                 </div>
 
 
-                <div className=' flex justify-center items-center '>
+                <div className=' flex justify-center items-center mb-9'>
                     <div className='md:h-[528px] md:w-[376px] gap-[16px] flex text-center flex-col'>
 
                         <div className=' w-max-[376px] md:w-full flex justify-center'>
@@ -89,10 +89,18 @@ function page() {
                         <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col gap-[14px]'>
 
 
+                        <fieldset className="relative border border-[#22B7D8] h-[60px] rounded-[10px] focus-within:border-blue-400 transition-colors">
+                                <legend className="text-sm text-[#514F4FC4] px-2 ml-2 text-start">Username</legend>
 
-                            <input {...register("userName")} placeholder='Username' className='w-full rounded-[10px] border-[#22B7D8] border-[1px] text-black max-w-[374px] h-[50px] px-2' />
+                            <input {...register("userName")} placeholder='Username' 
+                                    className="w-full h-[50px] px-2  pb-2 pr-10 text-black outline-none bg-transparent border-none"
+
+                            />
+                              
+                            </fieldset>
+
                             <fieldset className="relative border border-[#22B7D8] h-[60px] rounded-[10px] focus-within:border-blue-400 transition-colors">
-                                <legend className="text-sm text-[#22B7D8] px-2 ml-2">Password</legend>
+                                <legend className="text-sm text-[#514F4FC4] px-2 ml-2 text-start">Password</legend>
 
                                 <input
                                     {...register("password")}
@@ -135,11 +143,11 @@ function page() {
                         <div className='flex flex-col gap-[7px]'>
                             <h1 className='text-start'>Sign Up with open account</h1>
 
-                            <div className=' flex lg:gap-[10px] justify-between pb-6'>
+                            <div className=' flex lg:gap-[10px] justify-between'>
 
                                 {
-                                    socialLogin.map((logos) => (
-                                        <button className='lg:w-[106px] lg:h-[42px] border border-[#22B7D8] rounded-[10px] flex justify-center px-2  py-1'>{logos.icon}</button>
+                                    socialLogin.map((logos,index) => (
+                                        <button  key={index} className='lg:w-[106px] lg:h-[42px] border border-[#22B7D8] rounded-[10px] flex justify-center px-2  py-1'>{logos.icon}</button>
                                     ))
                                 }
                             </div>
