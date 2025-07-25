@@ -26,13 +26,13 @@ const containerStagger = {
 
 const Landing = () => {
   return (
-    <div className="w-full h-[70vh] md:h-screen relative overflow-hidden">
+    <div className="w-full h-[80svh] md:h-[70dvh] relative overflow-hidden">
       {/* Background Image */}
       <Image
         src="/assets/landing-bg.png"
         alt="Landing Background"
         fill
-        className="object-cover z-0 !h-[55%]"
+        className="object-cover z-0 !h-[60%]"
         priority
       />
 
