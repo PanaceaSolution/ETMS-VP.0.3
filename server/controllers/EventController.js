@@ -55,7 +55,14 @@ export const addEvent = async (req, res) => {
 
 export const getAllEvent = async (req, res) => {
   try {
-    const allEvent = await prisma.event.findMany();
+    const allEvent = await prisma.event.findMany({
+      where: {
+        isActive: true,
+      },
+      include: {
+        location: true,
+      },
+    });
     if (allEvent.length == 0) {
       return res.status(404).json({
         message: "No event found",

@@ -1,4 +1,4 @@
-import prisma from "../config/db";
+import prisma from "../config/db.js";
 
 export const createBooking = async (req, res) => {
   const {
@@ -21,7 +21,7 @@ export const createBooking = async (req, res) => {
     !totalPrice
   ) {
     return res.status(400).json({
-      message: 'Please provide all required fields',
+      message: "Please provide all required fields",
     });
   }
 
@@ -39,13 +39,13 @@ export const createBooking = async (req, res) => {
     });
 
     return res.status(201).json({
-      message: 'Booking created successfully',
+      message: "Booking created successfully",
       booking: newBooking,
     });
   } catch (error) {
-    console.error('Booking creation error:', error);
+    console.error("Booking creation error:", error);
     return res.status(500).json({
-      message: 'Something went wrong during booking creation',
+      message: "Something went wrong during booking creation",
       error: error.message,
     });
   }
@@ -66,7 +66,7 @@ export const getAllBookings = async (req, res) => {
     return res.status(200).json(bookings);
   } catch (error) {
     return res.status(500).json({
-      message: 'Failed to fetch bookings',
+      message: "Failed to fetch bookings",
       error: error.message,
     });
   }
@@ -87,13 +87,13 @@ export const getBookingById = async (req, res) => {
     });
 
     if (!booking) {
-      return res.status(404).json({ message: 'Booking not found' });
+      return res.status(404).json({ message: "Booking not found" });
     }
 
     return res.status(200).json(booking);
   } catch (error) {
     return res.status(500).json({
-      message: 'Failed to fetch booking',
+      message: "Failed to fetch booking",
       error: error.message,
     });
   }
@@ -101,13 +101,8 @@ export const getBookingById = async (req, res) => {
 
 export const updateBooking = async (req, res) => {
   const { id } = req.params;
-  const {
-    bookingCategory,
-    bookingDate,
-    numberOfTickets,
-    price,
-    totalPrice,
-  } = req.body;
+  const { bookingCategory, bookingDate, numberOfTickets, price, totalPrice } =
+    req.body;
 
   try {
     const updatedBooking = await prisma.booking.update({
@@ -123,12 +118,12 @@ export const updateBooking = async (req, res) => {
     });
 
     return res.status(200).json({
-      message: 'Booking updated successfully',
+      message: "Booking updated successfully",
       booking: updatedBooking,
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Failed to update booking',
+      message: "Failed to update booking",
       error: error.message,
     });
   }
@@ -147,12 +142,12 @@ export const deleteBooking = async (req, res) => {
     });
 
     return res.status(200).json({
-      message: 'Booking deleted successfully (soft delete)',
+      message: "Booking deleted successfully (soft delete)",
       booking: deletedBooking,
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Failed to delete booking',
+      message: "Failed to delete booking",
       error: error.message,
     });
   }

@@ -5,6 +5,7 @@ import sql from "./config/db.js";
 import userRoute from "./routes/UserRoute.js";
 import eventRoute from "./routes/EventRoute.js";
 import bookingRoute from "./routes/BookingRoute.js";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
