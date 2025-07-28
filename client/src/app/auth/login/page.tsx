@@ -13,7 +13,7 @@ function page() {
     const [showPassword, setShowPassword] = useState(false);
 
     const buttons = [
-        { name: "Guest Login", path: "auth/guestlogin" },
+        { name: "Guest Login", path: "/auth/guestlogin" },
         { name: "Sign Up", path: "/auth/signUp" },
         { name: "Log in", path: "login" },
     ]
