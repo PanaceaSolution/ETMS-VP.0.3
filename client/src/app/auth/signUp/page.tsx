@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState({
     fullName: '',
     mobileNumber: '',
@@ -57,7 +57,7 @@ const page = () => {
         <div className="md:w-1/2 bg-white p-10 hidden md:flex items-center justify-center">
           <div className="max-w-md">
             <img
-              src="/assets/Screenshot 2025-07-24 154415.png"
+              src="/assets/authLogo.png"
               alt="Payment Illustration"
               className="w-full"
             />
@@ -145,4 +145,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
