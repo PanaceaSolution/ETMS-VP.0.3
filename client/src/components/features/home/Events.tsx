@@ -2,10 +2,18 @@ import { useState } from 'react';
 import EventCard from '@/components/features/home/events/EventCard';
 import { nowShowingEvents, upcomingEvents } from '@/types/Event';
 import UpcomingEvents from './events/UpcomingEvents';
+import { useQuery } from '@tanstack/react-query';
+import EventsOptions from '@/lib/query/queryOptions/EventsOptions';
+import { is } from 'date-fns/locale';
 
 const EventsPage = () => {
   const [showUpcoming, setShowUpcoming] = useState(false);
+  const {data,isLoading} = useQuery(EventsOptions.AllEventsOptions())
 
+  if(isLoading){
+    return <div>Loading...</div>
+  }
+  console.log(data)
   return (
     <div className="container mx-auto px-4 py-6" id='events'>
       <div className="flex items-center justify-between mb-6">
