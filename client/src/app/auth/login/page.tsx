@@ -68,20 +68,24 @@ function page() {
                         <div className=' w-max-[376px] md:w-full flex justify-center'>
 
                             <Image src="/assets/eventix.png" alt='auth.png'
-                                className=" h-[45px] w-[216px] sm:h-[677px] sm:w-auto object-cover md:w-[full] md:h-[60px] "
+                                className=" h-[45px] w-[216px] sm:h-[45px] sm:w-[full] object-cover md:w-auto md:h-[60px] "
 
                                 height={70} width={260} />
                         </div>
 
                         <h1>From screen to scene in seconds</h1>
 
-                        <div className='md:gap-2 gap-[10px] flex  items-center text-center w-full justify-between'>
-
-                            {
-                                buttons.map((button, index) => (
-                                    <Link href={button.path} key={index} className='min-w-[98px] py-[10px] px-[2px] md:min-w-[120px]  max-h-[42px] md:p-[10px] border rounded-lg border-black'>{button.name}</Link>
-                                ))
-                            }
+                        <div className='md:gap-2 gap-[10px] flex items-center text-center w-full justify-between'>
+                            {buttons.map((button, index) => (
+                                <Link
+                                    href={button.path}
+                                    key={index}
+                                    className={`min-w-[98px] py-[10px] px-[2px] md:min-w-[120px] max-h-[42px] md:p-[10px] border rounded-lg border-black 
+        ${button.name === 'Log in' ? 'bg-blue-500 border-none text-white' : ''}`}
+                                >
+                                    {button.name}
+                                </Link>
+                            ))}
                         </div>
 
                         <h1 className='font-[400] text-[24px]'>Begin with excitement</h1>
@@ -89,14 +93,14 @@ function page() {
                         <form onSubmit={handleSubmit(onSubmit)} className='w-full flex flex-col gap-[14px]'>
 
 
-                        <fieldset className="relative border border-[#22B7D8] h-[60px] rounded-[10px] focus-within:border-blue-400 transition-colors">
+                            <fieldset className="relative border border-[#22B7D8] h-[60px] rounded-[10px] focus-within:border-blue-400 transition-colors">
                                 <legend className="text-sm text-[#514F4FC4] px-2 ml-2 text-start">Username</legend>
 
-                            <input {...register("userName")} placeholder='Username' 
+                                <input {...register("userName")} placeholder='Username'
                                     className="w-full h-[50px] px-2  pb-2 pr-10 text-black outline-none bg-transparent border-none"
 
-                            />
-                              
+                                />
+
                             </fieldset>
 
                             <fieldset className="relative border border-[#22B7D8] h-[60px] rounded-[10px] focus-within:border-blue-400 transition-colors">
@@ -125,7 +129,14 @@ function page() {
                             <div className='gap-[32px] flex flex-col'>
 
                                 <div className=' flex justify-between'>
-                                    <p>Remember Me</p>
+                                    <div className='flex'>
+                                        <input
+                                            name="terms"
+                                            type="checkbox"
+                                            className="w-[15px] h-[15px] mt-1 mr-2 accent-blue-500 rounded-full"
+                                        />
+                                        <p>Remember Me</p>
+                                    </div>
                                     <Link href='/forgetpassword'> forget Password ?</Link>
                                 </div>
                                 <button className='w-full p-[10px] bg-[#4B91F1] rounded-[10px] text-white'>Lets Start</button>
@@ -146,8 +157,8 @@ function page() {
                             <div className=' flex lg:gap-[10px] justify-between'>
 
                                 {
-                                    socialLogin.map((logos,index) => (
-                                        <button  key={index} className='lg:w-[106px] lg:h-[42px] border border-[#22B7D8] rounded-[10px] flex justify-center px-2  py-1'>{logos.icon}</button>
+                                    socialLogin.map((logos, index) => (
+                                        <button key={index} className='lg:w-[106px] lg:h-[42px] border border-[#22B7D8] rounded-[10px] flex justify-center px-2  py-1'>{logos.icon}</button>
                                     ))
                                 }
                             </div>
