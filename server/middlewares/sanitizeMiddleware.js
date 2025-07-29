@@ -1,14 +1,19 @@
-import expressValidator from "express-validator";
+const sanitizeValue = (value) => {
+  if (typeof value === "string") {
+    return value.replace(/<[^>]*>?/gm, "").trim();
+  } else if (typeof value === "object" && value !== null) {
+    for (let key in value) {
+      value[key] = sanitizeValue(value[key]);
+    }
+  }
+  return value;
+};
 
 const sanitizePostData = (req, res, next) => {
-  if (req.method === "POST") {
-    for (let key in req.body) {
-      if (typeof req.body[key] === "string") {
-        // Simple manual sanitization for demo purposes
-        req.body[key] = req.body[key].replace(/<[^>]*>?/gm, "").trim();
-      }
-    }
+  if (["POST", "PUT", "PATCH"].includes(req.method)) {
+    req.body = sanitizeValue(req.body);
   }
   next();
 };
+
 export { sanitizePostData };
