@@ -7,6 +7,6 @@ import {
 
 const router = express.Router();
 
-router.route("/").get(getAllEvent);
+router.route("/").get(getAllEvent).post(addEvent);
 router.route("/:id").get(getSingleEvent);
 export default router;

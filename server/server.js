@@ -7,7 +7,10 @@ import eventRoute from "./routes/EventRoute.js";
 import bookingRoute from "./routes/BookingRoute.js";
 import cors from "cors";
 import helmet from "helmet";
-import xss from "xss-clean";
+import { sanitizePostData } from "./middlewares/sanitizeMiddleware.js";
+import rateLimit from "express-rate-limit";
+
+// import xss from "xss-clean";
 
 const app = express();
 dotenv.config();
@@ -17,7 +20,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(helmet());
-app.use(xss());
+// app.use(xss());
+app.use(sanitizePostData);
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: "Too many requests from this IP, please try again later.",
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+// Apply the rate limiter to ALL routes
+app.use(limiter);
 
 // app.get("/db", async (req, res) => {
 //   try {
